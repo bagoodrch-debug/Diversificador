@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sobre — Distribui Rico</title>
+  <meta name="description" content="O que é o Distribui Rico, como ele funciona e quais são seus limites como ferramenta educacional." />
+  <link rel="canonical" href="https://SEU-USUARIO.github.io/carteira/sobre.html" />
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages/content.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="brand">
+        <svg class="brand__mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="16" cy="16" r="14" stroke="var(--color-primary)" stroke-width="2.5"/>
+          <path d="M16 8v16M9 12l7-4 7 4M9 20l7 4 7-4" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Distribui <span class="brand__gold">Rico</span></span>
+      </a>
+      <button class="nav-toggle icon-btn" aria-label="Abrir menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <nav class="main-nav">
+        <a href="index.html">Simulador</a>
+        <a href="metodologia.html">Metodologia</a>
+        <a href="sobre.html" aria-current="page">Sobre</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-hero">
+      <h1>Sobre o Distribui Rico</h1>
+      <p>Uma ferramenta simples para planejar, na teoria, como distribuir um investimento entre grandes classes de ativos.</p>
+    </div>
+
+    <article class="content">
+      <h2>O que é</h2>
+      <p>
+        O Distribui Rico é um simulador de alocação de carteira. Você informa um valor
+        total e distribui esse valor entre cinco classes — Renda Fixa, Ações, Ações no
+        Exterior, Fundos Imobiliários (FIIs) e Ouro — usando sliders. A cada ajuste, o
+        site sugere ativos reais dentro de cada classe e calcula, aproximadamente,
+        quantas cotas ou títulos caberiam no valor alocado.
+      </p>
+
+      <h2>O que ele não é</h2>
+      <div class="callout">
+        <strong>Isto não é uma recomendação de investimento.</strong> O site não
+        conhece seu perfil de risco, seus objetivos, seu horizonte de tempo ou sua
+        situação financeira. As sugestões existem para tornar a simulação mais
+        concreta, não para indicar o que comprar.
+      </div>
+
+      <h2>Como os dados chegam até aqui</h2>
+      <p>
+        As cotações de ações, BDRs, FIIs e ETFs vêm da <strong>Brapi</strong>. A
+        cotação do ouro vem da AwesomeAPI e os títulos públicos vêm do Tesouro
+        Direto. Nenhuma dessas consultas acontece a partir do seu navegador — um
+        processo automatizado atualiza um arquivo de dados público periodicamente.
+        Mais detalhes na página de <a href="metodologia.html" style="color:var(--color-primary)">Metodologia</a>.
+      </p>
+
+      <h2>Seus dados</h2>
+      <p>
+        Tudo o que você configura — valor total, percentuais, ativos adicionados
+        manualmente — fica salvo apenas no armazenamento local do seu próprio
+        navegador (localStorage). Nada é enviado para um servidor.
+      </p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div class="site-footer__links">
+        <a href="metodologia.html">Metodologia</a>
+        <a href="sobre.html">Sobre</a>
+      </div>
+      <p>&copy; <span id="year"></span> Distribui Rico. Conteúdo educacional — não é recomendação de investimento.</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { onReady, markActiveNav, initNavToggle } from "./js/core/dom.js";
+    onReady(() => {
+      markActiveNav();
+      initNavToggle();
+      document.getElementById("year").textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
