@@ -1,0 +1,10 @@
+{
+  "updatedAt": null,
+  "stocks": [],
+  "bdrs": [],
+  "fiis": [],
+  "goldEtf": [],
+  "gold": null,
+  "treasury": [],
+  "errors": ["Este é um arquivo inicial de exemplo. Rode o workflow 'Atualizar cotações' (aba Actions) para gerar os dados reais."]
+}

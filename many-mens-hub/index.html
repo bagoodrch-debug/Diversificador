@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Many Mens — Ferramentas e conteúdo pra quem constrói</title>
+  <meta name="description" content="Um portal de ferramentas práticas e conteúdo direto ao ponto: disciplina, dinheiro e ação. Comece pelo simulador de alocação de carteira." />
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="brand">
+        <img class="brand__mark" src="assets/icons/favicon.svg" alt="Many Mens" />
+        <span class="brand__name">Many <span>Mens</span></span>
+      </a>
+      <a class="header-cta" href="https://linktr.ee/Manymens" target="_blank" rel="noopener">
+        Todos os links
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <p class="hero__eyebrow">Procuramos melhorar sua vida</p>
+      <h1>Homem não <span class="hl-red">chora</span>?<br />Homem <span class="hl-cyan">age</span>.</h1>
+      <p class="lead">
+        Ferramentas simples pra sair da teoria. Sem fórmula mágica —
+        só o que dá pra usar <span class="hl-gold" style="font-weight:600">hoje mesmo</span>
+        pra organizar sua cabeça e seu bolso.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--solid" href="#projetos">Ver ferramentas</a>
+        <a class="btn btn--ghost" href="https://www.instagram.com/manymensofc/" target="_blank" rel="noopener">
+          @manymensofc
+        </a>
+      </div>
+      <svg class="seal" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="16" cy="16" r="15" fill="#ffffff"/>
+        <text x="16" y="22" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="16" fill="#050505">MM</text>
+      </svg>
+    </section>
+
+    <section class="section container" id="projetos">
+      <div class="section__head">
+        <div>
+          <h2>Ferramentas</h2>
+          <p>Cada uma resolve um problema específico. Sem cadastro, sem enrolação.</p>
+        </div>
+      </div>
+
+      <div class="project-grid">
+        <a class="project-card" href="carteira/index.html" style="--card-accent:#f5b942" data-reveal>
+          <span class="project-card__tag">Finanças</span>
+          <h3>Alocador de Carteira</h3>
+          <p>Simule como distribuir seu dinheiro entre Renda Fixa, Ações, Ações no Exterior, FIIs e Ouro — com sugestões baseadas em cotações reais.</p>
+          <span class="project-card__link">
+            Abrir simulador
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+
+        <div class="project-card project-card--soon" data-reveal>
+          <span class="project-card__tag">Em breve</span>
+          <h3 style="margin-top:.9rem">Próxima ferramenta</h3>
+          <p style="margin-bottom:0">Esse espaço é pro próximo microsite do Many Mens. Volte em breve.</p>
+        </div>
+      </div>
+    </section>
+
+    <!--
+      ESPAÇO DE ANÚNCIO (Google AdSense)
+      Depois de ser aprovado no AdSense, troque este bloco pelo snippet
+      <ins class="adsbygoogle">...</ins> que o próprio AdSense fornece.
+      Deixei rotulado como "Publicidade" por transparência com o visitante —
+      recomendo manter esse rótulo mesmo depois de ativar o anúncio real.
+    -->
+    <section class="section container">
+      <div class="ad-slot">
+        <span class="ad-slot__label">Publicidade</span>
+        Espaço reservado para anúncio (Google AdSense)
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div class="site-footer__links">
+        <a href="https://www.instagram.com/manymensofc/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://linktr.ee/Manymens" target="_blank" rel="noopener">Linktree</a>
+        <a href="carteira/index.html">Alocador de Carteira</a>
+      </div>
+      <small>&copy; <span id="year"></span> Many Mens. Conteúdo educacional.</small>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
