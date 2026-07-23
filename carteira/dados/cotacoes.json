@@ -1,118 +1,118 @@
 {
-  "updatedAt": "2026-07-23T11:55:01.207Z",
+  "updatedAt": "2026-07-23T14:19:32.092Z",
   "stocks": [
     {
       "symbol": "PETR4",
-      "price": 42.58,
-      "changePct": 2.21,
+      "price": 43.22,
+      "changePct": 1.5,
       "name": "Petroleo Brasileiro SA Pfd"
     },
     {
       "symbol": "ITUB4",
-      "price": 42.9,
-      "changePct": 0.87,
+      "price": 42.56,
+      "changePct": -0.79,
       "name": "Itau Unibanco Holding SA Pfd"
     },
     {
       "symbol": "VALE3",
-      "price": 75.1,
-      "changePct": 3.96,
+      "price": 76.92,
+      "changePct": 2.42,
       "name": "Vale S.A."
     },
     {
       "symbol": "WEGE3",
-      "price": 46.74,
-      "changePct": 10.05,
+      "price": 45.45,
+      "changePct": -2.76,
       "name": "WEG SA"
     },
     {
       "symbol": "BBAS3",
-      "price": 21.09,
-      "changePct": 1.01,
+      "price": 20.86,
+      "changePct": -1.09,
       "name": "Banco do Brasil S.A."
     },
     {
       "symbol": "BBDC4",
-      "price": 18.97,
-      "changePct": 2.26,
+      "price": 18.87,
+      "changePct": -0.53,
       "name": "Banco Bradesco SA Pfd"
     },
     {
       "symbol": "ABEV3",
-      "price": 16.13,
-      "changePct": 2.09,
+      "price": 16.02,
+      "changePct": -0.68,
       "name": "Ambev SA"
     }
   ],
   "bdrs": [
     {
       "symbol": "IVVB11",
-      "price": 428.86,
-      "changePct": -0.29,
+      "price": 425.8,
+      "changePct": -0.71,
       "name": "iShares S&P 500 Fundo de Investimento em Cotas de Fundo de Indice - Investimento no Exterior"
     },
     {
       "symbol": "AAPL34",
-      "price": 82.08,
-      "changePct": -1.29,
+      "price": 81.42,
+      "changePct": -0.8,
       "name": "Apple Inc. Shs Unsponsored Brazilian Depository Receipt Repr 0.05 Sh"
     },
     {
       "symbol": "MSFT34",
-      "price": 82.35,
-      "changePct": -2.26,
+      "price": 82.27,
+      "changePct": -0.1,
       "name": "Microsoft Corp Shs Unsponsored Brazilian Depository Receipt Repr 0.04167 Sh"
     },
     {
       "symbol": "GOGL34",
-      "price": 142.83,
-      "changePct": -2.81,
+      "price": 136.12,
+      "changePct": -4.7,
       "name": "Alphabet Inc Shs A Unsponsored Brazilian Depository Receipt Repr 0.08333 Sh -"
     },
     {
       "symbol": "AMZO34",
-      "price": 61.87,
-      "changePct": -1.47,
+      "price": 59.86,
+      "changePct": -3.25,
       "name": "Amazon.com, Inc. Shs Unsponsored Brazilian Depository Receipt Repr 0.05 Sh"
     }
   ],
   "fiis": [
     {
       "symbol": "HGLG11",
-      "price": 147.8,
-      "changePct": -0.81,
+      "price": 147.62,
+      "changePct": -0.12,
       "name": "Patria Log - Fundo de Investimento Imobiliario - Responsabilidade Limitada Cotas"
     },
     {
       "symbol": "KNRI11",
-      "price": 154.38,
-      "changePct": -1.22,
+      "price": 154.09,
+      "changePct": -0.19,
       "name": "Kinea Renda Imobiliaria Fundo de Investimento Imobiliario - FII Cotas"
     },
     {
       "symbol": "MXRF11",
-      "price": 9.68,
+      "price": 9.69,
       "changePct": 0.1,
       "name": "Maxi Renda Fundo de Investimento Imobiliario Cotas"
     },
     {
       "symbol": "XPML11",
       "price": 104.58,
-      "changePct": 0.08,
+      "changePct": 0,
       "name": "XP Malls Fundo Investimento Imobiliario Investor"
     },
     {
       "symbol": "VISC11",
-      "price": 104.23,
-      "changePct": -0.83,
+      "price": 104.48,
+      "changePct": 0.24,
       "name": "Vinci Shopping Centers Fundo de Investimento Imobiliario - FII Cotas"
     }
   ],
   "goldEtf": [
     {
       "symbol": "GOLD11",
-      "price": 21.7,
-      "changePct": 0.65,
+      "price": 21.4,
+      "changePct": -1.38,
       "name": "Gold - Trend ETF LBMA Ouro Fundo Investimento Cotas de Fundo de Indice Investiment Exterior"
     }
   ],
