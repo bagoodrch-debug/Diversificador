@@ -2,9 +2,9 @@ name: Atualizar cotações
 
 on:
   schedule:
-    # A cada 30 minutos. O GitHub pode atrasar em horários de pico, mas nunca
+    # A cada 60 minutos. O GitHub pode atrasar em horários de pico, mas nunca
     # roda mais rápido que isso.
-    - cron: "*/30 * * * *"
+    - cron: "*/0 * * * *"
   workflow_dispatch: {} # permite rodar manualmente pela aba Actions
   push:
     branches: [main]
