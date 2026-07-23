@@ -1,21 +1,15 @@
 // Camada de acesso a dados do site.
 //
-// IMPORTANTE SOBRE SEGURANÇA DA CHAVE DA BRAPI:
-// Este é um site 100% estático (GitHub Pages). Qualquer chamada feita direto
-// do navegador para a Brapi exigiria colocar o token no JS público — e nesse
-// caso ele ficaria visível para qualquer visitante (F12 > Network resolve
-// isso em segundos). Por isso este site NUNCA chama a Brapi a partir do
-// navegador.
-//
-// Em vez disso, um workflow do GitHub Actions (.github/workflows/atualizar-
-// cotacoes.yml) roda periodicamente NO SERVIDOR do GitHub, usando o token
-// guardado em Settings > Secrets (nunca aparece no código), busca as cotações
-// e grava o resultado em dados/cotacoes.json — um arquivo público, mas sem
-// nenhuma credencial dentro dele. O site só lê esse arquivo.
-//
-// Veja scripts/atualizar-cotacoes.mjs para a lógica que gera esse arquivo.
+// Duas fontes de cotação:
+// 1. dados/cotacoes.json — gerado periodicamente pelo GitHub Actions, usado
+//    nas sugestões padrão de cada categoria (rápido, sem gastar cota extra).
+// 2. Cloudflare Worker (WORKER_URL) — usado só na busca manual por ticker,
+//    pra achar ativos que não estão na lista pré-carregada. O token da
+//    Brapi fica só no Worker, nunca aparece aqui.
 
 const DATA_URL = "dados/cotacoes.json";
+const WORKER_URL = "https://brapi-proxu.manymens777.workers.dev"; // troque pelo seu endereço
+
 let cache = null;
 let inflight = null;
 
@@ -38,16 +32,15 @@ export async function getQuotes({ force = false } = {}) {
 }
 
 /**
- * Busca um ticker dentro da base já carregada (ações, BDRs, FIIs, ETF de
- * ouro). Como o site não pode chamar a Brapi ao vivo sem expor o token, a
- * busca funciona sobre os ativos que o workflow já acompanha. Qualquer coisa
- * fora dessa lista pode ser adicionada manualmente pelo usuário.
+ * Busca um ticker. Primeiro tenta na base já carregada (rápido, sem gastar
+ * cota); se não achar, tenta ao vivo via Cloudflare Worker.
  */
 export async function lookupTicker(rawTicker) {
   const ticker = String(rawTicker || "").trim().toUpperCase();
   if (!/^[A-Z0-9]{2,10}$/.test(ticker)) {
     throw new Error("Ticker inválido");
   }
+
   const data = await getQuotes();
   const all = [
     ...(data.stocks || []),
@@ -56,13 +49,19 @@ export async function lookupTicker(rawTicker) {
     ...(data.goldEtf || []),
   ];
   const found = all.find((q) => q.symbol === ticker);
-  if (!found) {
-    throw new Error("Ativo não encontrado na base acompanhada pelo site");
+  if (found) {
+    return {
+      symbol: found.symbol,
+      shortName: found.name,
+      regularMarketPrice: found.price,
+      regularMarketChangePercent: found.changePct,
+    };
   }
-  return {
-    symbol: found.symbol,
-    shortName: found.name,
-    regularMarketPrice: found.price,
-    regularMarketChangePercent: found.changePct,
-  };
+
+  // Não estava na base pré-carregada — tenta ao vivo.
+  const r = await fetch(`${WORKER_URL}/quote/${encodeURIComponent(ticker)}`);
+  if (!r.ok) {
+    throw new Error("Ativo não encontrado");
+  }
+  return r.json();
 }
