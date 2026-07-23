@@ -2,8 +2,6 @@ name: Atualizar cotações
 
 on:
   schedule:
-    # A cada 60 minutos. O GitHub pode atrasar em horários de pico, mas nunca
-    # roda mais rápido que isso.
     - cron: "0 * * * *"
   workflow_dispatch: {} # permite rodar manualmente pela aba Actions
   push:
@@ -27,10 +25,11 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Buscar cotações e gerar carteira/dados/cotacoes.json
+      - name: Buscar cotações e gerar dados/cotacoes.json
+        working-directory: carteira
         env:
           BRAPI_TOKEN: ${{ secrets.BRAPI_TOKEN }}
-        run: node carteira/scripts/atualizar-cotacoes.mjs
+        run: node scripts/atualizar-cotacoes.mjs
 
       - name: Publicar dados atualizados
         run: |
