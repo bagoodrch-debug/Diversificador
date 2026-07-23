@@ -282,3 +282,10 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   opacity: 1;
   transform: translateY(0);
 }
+.hero h1,
+.section__head h2,
+.project-card h3,
+.brand__name {
+  -webkit-font-smoothing: auto;
+  text-rendering: optimizeLegibility;
+}
