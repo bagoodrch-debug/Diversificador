@@ -1,7 +1,7 @@
 name: Atualizar cotações
 
 on:
-  schedule:
+  schedule: #60 min atualiza
     - cron: "0 * * * *"
   workflow_dispatch: {} # permite rodar manualmente pela aba Actions
   push:
