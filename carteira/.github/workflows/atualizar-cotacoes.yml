@@ -4,12 +4,12 @@ on:
   schedule:
     # A cada 60 minutos. O GitHub pode atrasar em horários de pico, mas nunca
     # roda mais rápido que isso.
-    - cron: "*/0 * * * *"
+    - cron: "0 * * * *"
   workflow_dispatch: {} # permite rodar manualmente pela aba Actions
   push:
     branches: [main]
     paths:
-      - "scripts/atualizar-cotacoes.mjs"
+      - "carteira/scripts/atualizar-cotacoes.mjs"
       - ".github/workflows/atualizar-cotacoes.yml"
 
 permissions:
@@ -27,15 +27,15 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Buscar cotações e gerar dados/cotacoes.json
+      - name: Buscar cotações e gerar carteira/dados/cotacoes.json
         env:
           BRAPI_TOKEN: ${{ secrets.BRAPI_TOKEN }}
-        run: node scripts/atualizar-cotacoes.mjs
+        run: node carteira/scripts/atualizar-cotacoes.mjs
 
       - name: Publicar dados atualizados
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add dados/cotacoes.json
+          git add carteira/dados/cotacoes.json
           git diff --staged --quiet && echo "Sem mudanças." || git commit -m "chore: atualizar cotações [skip ci]"
           git push
