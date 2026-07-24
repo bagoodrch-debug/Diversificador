@@ -3,7 +3,7 @@
 
 import { ASSETS } from "../data/categorias.data.js";
 import { META } from "../data/ativos.data.js";
-import { ratePct, formatMaturity } from "../core/format.js";
+import { formatMaturity } from "../core/format.js";
 
 const KEYS = ASSETS.map((a) => a.key);
 
@@ -96,7 +96,7 @@ export function buildSuggestions(key, data) {
         ticker: b.name,
         name: b.name,
         sector: b.type ?? "Tesouro Direto",
-        metric: `Taxa: ${ratePct(b.rate)}${b.maturity ? " · Venc. " + formatMaturity(b.maturity) : ""}`,
+        metric: `Taxa: ${b.rate.toFixed(2).replace(".", ",")}% a.a.${b.maturity ? " · Venc. " + formatMaturity(b.maturity) : ""}`,
         price: b.unitPrice,
         minFraction: 0.01,
         unit: "título",
