@@ -13,7 +13,7 @@ const SEARCHABLE = new Set(["acoes", "fii", "exterior"]);
  */
 export function renderSuggestions(container, assetKey, allocatedValue, state, handlers) {
   clear(container);
-  const supportsCustom = SEARCHABLE.has(assetKey);
+  const supportsCustom = true; // Renda Fixa e Ouro também podem receber ativos adicionados manualmente
 
   const combined = [
     ...state.items.map((item) => ({ item, excluded: state.excluded.includes(item.ticker) })),
