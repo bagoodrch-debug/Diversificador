@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Produtos — Many Mens</title>
+  <meta name="description" content="Seleção de produtos de cuidado masculino, higiene e desenvolvimento pessoal, com links para Amazon e Mercado Livre." />
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/pages/produtos.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="brand">
+        <img class="brand__mark" src="assets/icons/favicon.svg" alt="Many Mens" />
+        <span class="brand__name">Many <span>Mens</span></span>
+      </a>
+      <div class="header-right">
+        <nav class="main-nav">
+          <a href="index.html">Início</a>
+          <a href="index.html#projetos">Ferramentas</a>
+          <a href="produtos.html">Produtos</a>
+        </nav>
+        <a class="header-cta" href="https://linktr.ee/Manymens" target="_blank" rel="noopener">
+          Todos os links
+        </a>
+        <button class="nav-toggle icon-btn" aria-label="Abrir menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container produtos">
+    <div class="produtos__heading">
+      <h1>Produtos</h1>
+      <p>Seleção do que a gente realmente usa e recomenda. Compre pelos links abaixo — não muda o preço pra você, e ajuda a manter o Many Mens no ar.</p>
+    </div>
+
+    <div class="produtos__layout">
+      <aside class="categoria-sidebar">
+        <h2>Categorias</h2>
+        <nav class="categoria-list">
+          <button type="button" data-categoria="todos" aria-pressed="true">
+            Todos <span class="categoria-dot"></span>
+          </button>
+          <button type="button" data-categoria="pele" aria-pressed="false">
+            Cuidados com a Pele <span class="categoria-dot"></span>
+          </button>
+          <button type="button" data-categoria="cabelo" aria-pressed="false">
+            Cuidados com o Cabelo <span class="categoria-dot"></span>
+          </button>
+          <button type="button" data-categoria="barba" aria-pressed="false">
+            Barba <span class="categoria-dot"></span>
+          </button>
+          <button type="button" data-categoria="higiene" aria-pressed="false">
+            Higiene &amp; Banho <span class="categoria-dot"></span>
+          </button>
+          <button type="button" data-categoria="livros" aria-pressed="false">
+            Livros &amp; Desenvolvimento <span class="categoria-dot"></span>
+          </button>
+        </nav>
+      </aside>
+
+      <div class="produtos__vitrine">
+        <!--
+          COMO ADICIONAR/TROCAR PRODUTOS:
+          Cada bloco <section class="produto-grupo" data-categoria="..."> é uma
+          categoria. Dentro dele, cada <article class="produto-card"> é um
+          produto. Duplique um <article> pra adicionar mais um na mesma
+          categoria, ou duplique a <section> inteira pra criar uma categoria
+          nova (não esqueça de adicionar o botão correspondente na barra
+          lateral, com o mesmo valor de data-categoria).
+
+          Troque os href="#" dos botões de afiliado pelos seus links reais
+          (com sua tag de afiliado da Amazon e/ou do Mercado Livre).
+        -->
+
+        <section class="produto-grupo" data-categoria="pele">
+          <div class="produto-grupo__head">
+            <h3>Cuidados com a Pele</h3>
+            <span>Exemplo — troque pelos seus produtos</span>
+          </div>
+          <div class="produto-grid">
+            <article class="produto-card">
+              <span class="produto-card__tag">Exemplo</span>
+              <h4>Protetor solar facial</h4>
+              <p>Uso diário, toque seco, sem deixar oleosidade.</p>
+              <div class="produto-card__links">
+                <a class="afiliado-btn afiliado-btn--amazon" href="#" target="_blank" rel="noopener sponsored">Amazon</a>
+                <a class="afiliado-btn afiliado-btn--ml" href="#" target="_blank" rel="noopener sponsored">Mercado Livre</a>
+              </div>
+            </article>
+            <article class="produto-card">
+              <span class="produto-card__tag">Exemplo</span>
+              <h4>Sabonete facial esfoliante</h4>
+              <p>Remove oleosidade e cravos sem ressecar.</p>
+              <div class="produto-card__links">
+                <a class="afiliado-btn afiliado-btn--amazon" href="#" target="_blank" rel="noopener sponsored">Amazon</a>
+                <a class="afiliado-btn afiliado-btn--ml" href="#" target="_blank" rel="noopener sponsored">Mercado Livre</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="produto-grupo" data-categoria="cabelo">
+          <div class="produto-grupo__head">
+            <h3>Cuidados com o Cabelo</h3>
+            <span>Exemplo — troque pelos seus produtos</span>
+          </div>
+          <div class="produto-grid">
+            <article class="produto-card">
+              <span class="produto-card__tag">Exemplo</span>
+              <h4>Shampoo anticaspa</h4>
+              <p>Controle de oleosidade e coceira no couro cabeludo.</p>
+              <div class="produto-card__links">
+                <a class="afiliado-btn afiliado-btn--amazon" href="#" target="_blank" rel="noopener sponsored">Amazon</a>
+                <a class="afiliado-btn afiliado-btn--ml" href="#" target="_blank" rel="noopener sponsored">Mercado Livre</a>
+              </div>
+            </article>
+            <article class="produto-card">
+              <span class="produto-card__tag">Exemplo</span>
+              <h4>Pomada modeladora</h4>
+              <p>Fixação forte, acabamento matte.</p>
+              <div class="produto-card__links">
+                <a class="afiliado-btn afiliado-btn--amazon" href="#" target="_blank" rel="noopener sponsored">Amazon</a>
+                <a class="afiliado-btn afiliado-btn--ml" href="#" target="_blank" rel="noopener sponsored">Mercado Livre</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="produto-grupo" data-categoria="barba">
+          <div class="produto-grupo__head">
+            <h3>Barba</h3>
+            <span>Exemplo — troque pelos seus produtos</span>
+          </div>
+          <div class="produto-grid">
+            <article class="produto-card">
+              <span class="produto-card__tag">Exemplo</span>
+              <h4>Óleo para barba</h4>
+              <p>Hidrata os fios e a pele por baixo, reduz coceira.</p>
+              <div class="produto-card__links">
+                <a class="afiliado-btn afiliado-btn--amazon" href="#" target="_blank" rel="noopener sponsored">Amazon</a>
+                <a class="afiliado-btn afiliado-btn--ml" href="#" target="_blank" rel="noopener sponsored">Mercado Livre</a>
+              </div>
+            </article>
+            <article class="produto-card">
+              <span class="produto-card__tag">Exemplo</span>
+              <h4>Aparador de barba</h4>
+              <p>Sem fio, várias alturas de corte.</p>
+              <div class="produto-card__links">
+                <a class="afiliado-btn afiliado-btn--amazon" href="#" target="_blank" rel="noopener sponsored">Amazon</a>
+                <a class="afiliado-btn afiliado-btn--ml" href="#" target="_blank" rel="noopener sponsored">Mercado Livre</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="produto-grupo" data-categoria="higiene">
+          <div class="produto-grupo__head">
+            <h3>Higiene &amp; Banho</h3>
+            <span>Exemplo — troque pelos seus produtos</span>
+          </div>
+          <div class="produto-grid">
+            <article class="produto-card">
+              <span class="produto-card__tag">Exemplo</span>
+              <h4>Desodorante antitranspirante</h4>
+              <p>Proteção 48h, sem manchar a roupa.</p>
+              <div class="produto-card__links">
+                <a class="afiliado-btn afiliado-btn--amazon" href="#" target="_blank" rel="noopener sponsored">Amazon</a>
+                <a class="afiliado-btn afiliado-btn--ml" href="#" target="_blank" rel="noopener sponsored">Mercado Livre</a>
+              </div>
+            </article>
+            <article class="produto-card">
+              <span class="produto-card__tag">Exemplo</span>
+              <h4>Sabonete líquido corporal</h4>
+              <p>Limpeza profunda, perfume duradouro.</p>
+              <div class="produto-card__links">
+                <a class="afiliado-btn afiliado-btn--amazon" href="#" target="_blank" rel="noopener sponsored">Amazon</a>
+                <a class="afiliado-btn afiliado-btn--ml" href="#" target="_blank" rel="noopener sponsored">Mercado Livre</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="produto-grupo" data-categoria="livros">
+          <div class="produto-grupo__head">
+            <h3>Livros &amp; Desenvolvimento</h3>
+            <span>Exemplo — troque pelos seus produtos</span>
+          </div>
+          <div class="produto-grid">
+            <article class="produto-card">
+              <span class="produto-card__tag">Exemplo</span>
+              <h4>Livro sobre disciplina e hábitos</h4>
+              <p>Leitura recomendada pra quem tá começando a se organizar.</p>
+              <div class="produto-card__links">
+                <a class="afiliado-btn afiliado-btn--amazon" href="#" target="_blank" rel="noopener sponsored">Amazon</a>
+                <a class="afiliado-btn afiliado-btn--ml" href="#" target="_blank" rel="noopener sponsored">Mercado Livre</a>
+              </div>
+            </article>
+            <article class="produto-card">
+              <span class="produto-card__tag">Exemplo</span>
+              <h4>Livro sobre educação financeira</h4>
+              <p>Base pra quem tá começando a investir.</p>
+              <div class="produto-card__links">
+                <a class="afiliado-btn afiliado-btn--amazon" href="#" target="_blank" rel="noopener sponsored">Amazon</a>
+                <a class="afiliado-btn afiliado-btn--ml" href="#" target="_blank" rel="noopener sponsored">Mercado Livre</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <p class="produtos__disclaimer">
+          Alguns links desta página são links de afiliado. Se você comprar
+          por eles, o Many Mens pode receber uma pequena comissão, sem
+          nenhum custo a mais pra você. Isso ajuda a manter o site no ar.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div class="site-footer__links">
+        <a href="https://www.instagram.com/manymensofc/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://linktr.ee/Manymens" target="_blank" rel="noopener">Linktree</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="carteira/index.html">Alocador de Carteira</a>
+      </div>
+      <small>&copy; <span id="year"></span> Many Mens. Conteúdo educacional.</small>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/produtos.js"></script>
+</body>
+</html>
