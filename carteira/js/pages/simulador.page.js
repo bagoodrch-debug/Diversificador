@@ -40,6 +40,52 @@ function persistExcluded() {
   save(STORE_KEYS.EXCLUDED, state.excluded);
 }
 
+let fullRenderTimer = null;
+/** Agenda a reconstrução pesada (sugestões) para depois que o arraste parar. */
+function scheduleFullRender(root, delay = 150) {
+  clearTimeout(fullRenderTimer);
+  fullRenderTimer = setTimeout(() => renderAssetCards(root), delay);
+}
+function cancelScheduledFullRender() {
+  clearTimeout(fullRenderTimer);
+  fullRenderTimer = null;
+}
+
+function sliderBackgroundSize(pct) {
+  return `${Math.max(0, Math.min(100, pct))}% 100%`;
+}
+
+/**
+ * Atualiza só os números e a barrinha de cada card (leve, roda a cada pixel
+ * do arraste). As sugestões (parte pesada) ficam intactas até o próximo
+ * render completo — isso é o que deixa o slider liso.
+ */
+function updateLightweight(root) {
+  ASSETS.forEach((asset) => {
+    const card = qs(`[data-asset="${asset.key}"]`, root);
+    if (!card) return;
+    const pct = state.alloc[asset.key];
+    const value = (pct / 100) * state.total;
+
+    card.dataset.active = String(pct > 0);
+
+    const pctInput = qs(".asset-card__pct input", card);
+    if (pctInput && document.activeElement !== pctInput) {
+      pctInput.value = pct.toFixed(1).replace(".", ",");
+    }
+
+    const slider = qs(".slider", card);
+    if (slider) {
+      slider.value = String(pct);
+      slider.style.backgroundSize = sliderBackgroundSize(pct);
+    }
+
+    const valueEl = qs(".asset-card__value", card);
+    if (valueEl) valueEl.textContent = brl(value);
+  });
+  renderComposition(root);
+}
+
 export function initSimuladorPage() {
   const root = qs("#simulador-root");
   if (!root) return;
@@ -217,12 +263,17 @@ function buildAssetCard(root, asset) {
     max: "100",
     step: "0.5",
     value: String(pct),
-    style: `--asset-color:${asset.color}`,
+    style: `--asset-color:${asset.color}; background-size:${sliderBackgroundSize(pct)}`,
     onInput: (e) => {
       state.alloc = redistribute(state.alloc, asset.key, parseFloat(e.target.value));
       persistAlloc();
+      updateLightweight(root);
+      scheduleFullRender(root);
+    },
+    onChange: () => {
+      // Soltou o slider: garante que as sugestões fiquem com os números finais.
+      cancelScheduledFullRender();
       renderAssetCards(root);
-      renderComposition(root);
     },
   });
 
@@ -230,7 +281,7 @@ function buildAssetCard(root, asset) {
 
   const card = el(
     "div",
-    { class: "card asset-card", "data-active": String(active) },
+    { class: "card asset-card", "data-active": String(active), "data-asset": asset.key },
     [
       el("div", { class: "asset-card__top" }, [
         el("div", { class: "asset-card__label" }, [
