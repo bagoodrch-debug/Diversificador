@@ -44,15 +44,62 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   font-size: 1.05rem;
 }
 .brand__name span { color: var(--gold); }
-.header-cta {
-  display: inline-flex;
+.header-right {
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  padding: 0.45rem 1rem;
-  border-radius: 999px;
-  font-size: 0.78rem;
+  gap: 1.5rem;
+}
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+.main-nav a {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.15s ease;
+}
+.main-nav a:hover,
+.main-nav a[aria-current="page"] {
+  color: var(--fg);
+}
+.nav-toggle {
+  display: none;
+  padding: 0.4rem;
+  border-radius: var(--radius-sm);
+  color: var(--fg);
+}
+@media (max-width: 760px) {
+  .header-cta { display: none; }
+  .main-nav {
+    position: fixed;
+    inset: 68px 0 auto 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 1.25rem 1rem;
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+  .main-nav a {
+    padding: 0.7rem 0;
+    width: 100%;
+    border-bottom: 1px solid var(--border);
+  }
+  .main-nav.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .nav-toggle { display: inline-flex; }
+}
   font-weight: 600;
   letter-spacing: 0.02em;
   transition: background-color .15s ease, color .15s ease;
@@ -281,11 +328,4 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 [data-reveal].is-visible {
   opacity: 1;
   transform: translateY(0);
-}
-.hero h1,
-.section__head h2,
-.project-card h3,
-.brand__name {
-  -webkit-font-smoothing: auto;
-  text-rendering: optimizeLegibility;
 }
