@@ -62,64 +62,45 @@ async function fetchGold() {
   };
 }
 
-const TREASURY_URLS = [
-  "https://www.tesourodireto.com.br/json/br/com/b3/tesourodireto/service/api/treasurybondsinfo/list.json",
-  "https://www.tesourodireto.com.br/json/br/com/b3/tesourodireto/service/api/treasurybondsinfo.json",
+// Renda Fixa: o site oficial do Tesouro Direto passou a bloquear chamadas
+// automatizadas (proteção anti-robô da Cloudflare, aconteceu com todo mundo
+// que faz esse tipo de integração, não só com a gente). Em vez de brigar com
+// isso, usamos o "sandbox" público da API de Tesouro Direto da Brapi: 3
+// títulos fixos (um de cada tipo — Selic, Prefixado, IPCA+) que funcionam
+// sem token e sem exigir plano pago. Ver:
+// https://brapi.dev/blog/api-tesouro-direto-brasil-como-consultar-2026
+const TREASURY_SANDBOX_SYMBOLS = [
+  "tesouro-selic-01032031",
+  "tesouro-prefixado-com-juros-semestrais-01012037",
+  "tesouro-ipca-com-juros-semestrais-15082060",
 ];
 
-async function fetchTreasuryRaw() {
-  let lastErr = null;
-  for (const url of TREASURY_URLS) {
-    try {
-      const r = await fetch(url, {
-        headers: { Accept: "application/json", "User-Agent": "DistribuiRico/1.0" },
-      });
-      if (!r.ok) {
-        lastErr = new Error(`treasury ${r.status}`);
-        continue;
-      }
-      const j = await r.json();
-      const list = j.response?.TrsrBdTradgList ?? [];
-      const bonds = [];
-      for (const item of list) {
-        const b = item.TrsrBd;
-        if (!b || !b.nm || !b.untrRedVal || b.anulInvstmtRate == null) continue;
-        bonds.push({
-          name: b.nm,
-          rate: b.anulInvstmtRate,
-          unitPrice: b.untrRedVal,
-          minAmount: b.minInvstmtAmt ?? b.untrRedVal * 0.01,
-          maturity: b.mtrtyDt ?? null,
-          type: b.featrs ?? null,
-        });
-      }
-      if (bonds.length > 0) return bonds;
-      lastErr = new Error("treasury empty");
-    } catch (e) {
-      lastErr = e;
-    }
+function treasuryTypeLabel(item) {
+  switch (item.rateInfo?.rateType) {
+    case "spreadOverSelic":
+      return "Pós-fixado (Selic + spread)";
+    case "nominalAnnualRate":
+      return "Prefixado (taxa nominal)";
+    case "realAnnualRateOverIpca":
+      return "Híbrido (IPCA + taxa real)";
+    default:
+      return item.bondType ?? "Tesouro Direto";
   }
-  throw lastErr ?? new Error("treasury failed");
 }
 
 async function fetchTreasury() {
-  const bonds = await fetchTreasuryRaw();
-  const picked = [];
-  const add = (predicate) => {
-    const found = bonds
-      .filter(predicate)
-      .filter((b) => !picked.includes(b))
-      .sort((a, z) => (a.maturity ?? "").localeCompare(z.maturity ?? ""))[0];
-    if (found) picked.push(found);
-  };
-  add((b) => /Selic/i.test(b.name));
-  const ipcaLong = bonds
-    .filter((b) => /IPCA\+/.test(b.name) && !/Juros Semestrais/i.test(b.name))
-    .sort((a, z) => (z.maturity ?? "").localeCompare(a.maturity ?? ""))[0];
-  if (ipcaLong) picked.push(ipcaLong);
-  add((b) => /Prefixado/i.test(b.name) && !/Juros Semestrais/i.test(b.name));
-  add((b) => /IPCA\+.*Juros Semestrais/i.test(b.name));
-  return picked;
+  const symbols = TREASURY_SANDBOX_SYMBOLS.join(",");
+  const r = await fetch(`https://brapi.dev/api/v2/treasury/indicators?symbols=${encodeURIComponent(symbols)}`);
+  if (!r.ok) throw new Error(`treasury ${r.status}`);
+  const j = await r.json();
+  return (j.results || []).map((item) => ({
+    name: `${item.bondType ?? "Tesouro Direto"} ${item.maturityDate?.slice(0, 4) ?? ""}`.trim(),
+    rate: item.buyRate,
+    unitPrice: item.buyPrice,
+    minAmount: item.buyPrice * 0.01,
+    maturity: item.maturityDate ?? null,
+    type: treasuryTypeLabel(item),
+  }));
 }
 
 async function safe(label, promise, fallback, errors) {
